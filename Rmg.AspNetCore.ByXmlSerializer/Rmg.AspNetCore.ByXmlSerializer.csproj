@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Rmg.AspNetCore</RootNamespace>
+    
+    <Description>Library to allow mixed use of XmlSerializer, DataContractSerializer, and JsonSerializer in an ASP.Net Core WebAPI</Description>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+  </PropertyGroup>
+  <Import Project="..\assets\EsattoCSCommon.targets" />
+  
+  <ItemGroup>
+    <None Include="..\Readme.md" Link="Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+</Project>

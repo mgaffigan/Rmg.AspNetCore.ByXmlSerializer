@@ -1,0 +1,22 @@
+name: Release tagged revision
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Build Rmg.AspNetCore.ByXmlSerializer
+      run: dotnet pack Rmg.AspNetCore.ByXmlSerializer -c Release -p:Version=${{github.ref_name}}
+    - name: NugetPush Rmg.AspNetCore.ByXmlSerializer
+      run: dotnet nuget push -s https://www.nuget.org/api/v2/package --api-key ${{secrets.MG_NUGET_SECRET}} Rmg.AspNetCore.ByXmlSerializer/bin/Release/Rmg.AspNetCore.ByXmlSerializer.${{github.ref_name}}.nupkg

@@ -1,0 +1,56 @@
+@DemoApp_HostAddress = http://localhost:5272
+
+###
+# DCS
+GET {{DemoApp_HostAddress}}/forecast/normal
+Accept: text/xml
+
+###
+# Default
+GET {{DemoApp_HostAddress}}/forecast/normal
+
+###
+# ByXmlSerializer + Default
+GET {{DemoApp_HostAddress}}/forecast/xs
+
+###
+# ByXmlSerializer + JSON
+GET {{DemoApp_HostAddress}}/forecast/xs
+Accept: text/json
+
+###
+# ByXmlSerializer + XML
+GET {{DemoApp_HostAddress}}/forecast/xs
+Accept: application/xml
+
+###
+# ByXmlSerializer input
+POST {{DemoApp_HostAddress}}/forecast/postxs
+Accept: application/xml
+Content-Type: application/xml
+
+<ForecastArea Count="5"/>
+###
+# DCS input
+POST {{DemoApp_HostAddress}}/forecast/post
+Accept: application/xml
+Content-Type: application/xml
+
+<ForecastArea>
+    <Count>5</Count>
+</ForecastArea>
+###
+# ByXmlSerializer JSON input
+POST {{DemoApp_HostAddress}}/forecast/postxs
+Accept: text/json
+Content-Type: text/json
+
+{ "Count": 5 }
+###
+# Default JSON input
+POST {{DemoApp_HostAddress}}/forecast/post
+Accept: text/json
+Content-Type: text/json
+
+{ "Count": 5 }
+###
